@@ -1,0 +1,15 @@
+<!-- templates/submissions/submission_detail.html -->
+{% extends "allauth/layouts/entrance.html" %}
+{% load allauth %}
+{% block head_title %}Submission Details{% endblock %}
+{% block content %}
+    <h1>Submission Details</h1>
+    <p><strong>User:</strong> {{ submission.user.username }}</p>
+    <p><strong>Title:</strong> {{ submission.title }}</p>
+    <p><strong>Description:</strong> {{ submission.description }}</p>
+    <p><strong>Status:</strong> {{ submission.get_status_display }}</p>
+    <a href="{% url 'submissions-update' submission.id %}">Edit Submission</a>
+    <a href="{% url 'submissions-delete' submission.id %}">Delete Submission</a>
+    <br>
+    <a href="{% url 'submissions' %}">Back to Submissions List</a>
+{% endblock content %}

@@ -1,0 +1,17 @@
+{% extends "allauth/layouts/entrance.html" %}
+{% load allauth %}
+{% block head_title %}Notix - All Submissions{% endblock %}
+{% block content %}
+    {% element h1 %}
+        All Submissions
+    {% endelement %}
+    <ul>
+        {% for submission in submissions %}
+            <li>{{ submission.user.username }} - {{ submission.title }} - Status: {{ submission.get_status_display }}</li>
+            {% if not user.role == "customer" %}
+            Edit: <a href="{% url 'submissions-update' submission.id %}">Update</a> Delete: <a href="{% url 'submissions-delete' submission.id %}">Delete</a></li>
+            {% endif %}
+        {% endfor %}
+
+    </ul>
+{% endblock content %}

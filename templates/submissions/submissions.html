@@ -1,0 +1,18 @@
+<!-- templates/submissions/user_view.html -->
+{% extends "allauth/layouts/entrance.html" %}
+{% load allauth %}
+{% block head_title %}All Submissions{% endblock %}
+{% block content %}
+    {% element h1 %}
+    {% if user.role == "customer" %}
+        My Submissions <a href="{% url 'submissions-create' %}">Create Submission</a>
+    {% else %}
+        All Submissions
+    {% endif %}
+    {% endelement %}
+    <ul>
+        {% for submission in submissions %}
+            <li>{{ submission.user.username }} - {{ submission.title }} - Status: {{ submission.get_status_display }} Edit: <a href="{% url 'submissions-update' submission.id %}">Update</a> Delete: <a href="{% url 'submissions-delete' submission.id %}">Delete</a></li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

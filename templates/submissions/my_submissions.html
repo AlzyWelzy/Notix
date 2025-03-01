@@ -1,0 +1,14 @@
+{% extends "allauth/layouts/entrance.html" %}
+{% load allauth %}
+{% block head_title %}Notix - My Submissions{% endblock %}
+{% block content %}
+    {% element h1 %}
+        All Submissions
+    {% endelement %}
+    <ul>
+        {% for submission in submissions %}
+            <li>{{ submission.user.username }} - {{ submission.title }} - Status: {{ submission.get_status_display }}</li>
+        {% endfor %}
+
+    </ul>
+{% endblock content %}
